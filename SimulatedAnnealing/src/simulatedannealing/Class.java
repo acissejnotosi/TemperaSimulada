@@ -14,12 +14,12 @@ import java.util.List;
 public class Class {
     
     private int id;
-    private char class_name;
+    private String class_name;
     private int class_n;
     private int credits;
     private List<Integer> intervals;
 
-    public Class(int id, char class_name, int class_n, int credits, List<Integer> intervals) {
+    public Class(int id, String class_name, int class_n, int credits, List<Integer> intervals) {
         this.id = id;
         this.class_name = class_name;
         this.class_n = class_n;
@@ -29,7 +29,7 @@ public class Class {
 
 
 
-    public char getName() {
+    public String getName() {
         return class_name;
     }
 
@@ -45,7 +45,7 @@ public class Class {
         return id;
     }
 
-    public char getClass_name() {
+    public String getClass_name() {
         return class_name;
     }
 
