@@ -36,7 +36,7 @@ public class Discipline {
         return id;
     }
 
-    public String getClass_name() {
+    public String getDisciplineName() {
         return disciplineName;
     }
 
@@ -44,8 +44,8 @@ public class Discipline {
         return disciplineNum;
     }
     
-    public boolean isObrigatorie(){
-        String regex= "(";
+    public boolean isObrigatory(){
+        String regex= "(?i)(";
         for(EObrigatoryTokens t: EObrigatoryTokens.values())
             regex += t.getDisciplineName() + "| ";
         regex = regex.trim().substring(0,regex.length()-1) + ")";
