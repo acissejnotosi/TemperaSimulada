@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package simulatedannealing;
 
 import java.util.List;
 
-/**
- *
- * @author a1562711
- */
 public class Discipline {
     
     private int id;
@@ -53,7 +44,13 @@ public class Discipline {
         return disciplineNum;
     }
     
-    
+    public boolean isObrigatorie(){
+        String regex= "(";
+        for(EObrigatoryTokens t: EObrigatoryTokens.values())
+            regex += t.getDisciplineName() + "| ";
+        regex = regex.trim().substring(0,regex.length()-1) + ")";
+        return disciplineName.matches(regex);
+    }
     
     public boolean isNeeded(){
     return true ;

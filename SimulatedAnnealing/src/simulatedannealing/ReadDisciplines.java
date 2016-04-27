@@ -1,9 +1,3 @@
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package simulatedannealing;
 
 import java.io.BufferedReader;
@@ -16,10 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-/**
- *
- * @author a1562711
- */
 public class ReadDisciplines {
     final private FileInputStream stream; //= new FileInputStream("arquivo.txt");
     final private InputStreamReader reader; //= new InputStreamReader(stream);
