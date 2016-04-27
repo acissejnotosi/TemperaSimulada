@@ -45,7 +45,7 @@ public class SimulatedAnnealing {
         file = fileDialog.getSelectedFile();
         
         if(file == null || !file.exists()){
-            System.err.println("Arquivo não existe.");
+            System.err.println("Arquivo não encontrado.");
             System.exit(0);
         }
     
@@ -55,6 +55,8 @@ public class SimulatedAnnealing {
         
         for(Discipline d: disciplines)
             System.out.println(d);
+        
+        
     }
     
 }
