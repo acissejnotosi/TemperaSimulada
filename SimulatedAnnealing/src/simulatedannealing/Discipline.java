@@ -11,18 +11,18 @@ import java.util.List;
  *
  * @author a1562711
  */
-public class Class {
+public class Discipline {
     
     private int id;
-    private String class_name;
-    private int class_n;
+    private String disciplineName;
+    private int disciplineNum;
     private int credits;
     private List<Integer> intervals;
 
-    public Class(int id, String class_name, int class_n, int credits, List<Integer> intervals) {
+    public Discipline(int id, String disciplinename, int disciplinen, int credits, List<Integer> intervals) {
         this.id = id;
-        this.class_name = class_name;
-        this.class_n = class_n;
+        this.disciplineName = disciplinename;
+        this.disciplineNum = disciplinen;
         this.credits = credits;
         this.intervals = intervals;
     }
@@ -30,7 +30,7 @@ public class Class {
 
 
     public String getName() {
-        return class_name;
+        return disciplineName;
     }
 
     public int getCredits() {
@@ -46,11 +46,11 @@ public class Class {
     }
 
     public String getClass_name() {
-        return class_name;
+        return disciplineName;
     }
 
     public int getClass_n() {
-        return class_n;
+        return disciplineNum;
     }
     
     
@@ -63,4 +63,17 @@ public class Class {
      return true ;   
     }
             
+    @Override
+    public String toString(){
+        String str = "["+ id +"]{"+ disciplineName + disciplineNum +", "+ credits +", {";
+        for(Integer i: intervals)
+        {
+            int x = i/24 + 2;
+            int y = i%24 - 6;
+            str += String.format("%01d%02d, ", x, y);
+        }
+        str = str.substring(0,str.length()-2);
+        str += "}};";
+        return str;
+    }
 }
