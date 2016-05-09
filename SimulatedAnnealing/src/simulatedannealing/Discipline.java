@@ -47,7 +47,7 @@ public class Discipline {
     public boolean isObrigatory(){
         String regex= "(?i)(";
         for(EObrigatoryTokens t: EObrigatoryTokens.values())
-            regex += t.getDisciplineName() + "| ";
+            regex += t.getDisciplineName() + " ";
         regex = regex.trim().substring(0,regex.length()-1) + ")";
         return disciplineName.matches(regex);
     }
