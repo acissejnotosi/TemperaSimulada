@@ -18,6 +18,10 @@ public class FitnessFunction {
         maximumCredits = sumCredits;
     }
     
+    public long getBestFitnessPossible(){
+        return maximumCredits;
+    }
+    
     public long getFitness(boolean state[]) throws Exception{
         if(state.length != discips.length)
             throw new Exception("Vetor de seleção de disciplinas possui tamanho diferente do vetor de diciplinas");

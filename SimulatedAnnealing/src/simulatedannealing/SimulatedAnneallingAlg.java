@@ -37,26 +37,30 @@ public class SimulatedAnneallingAlg {
             Random r = new Random();
             for (int i = 0; i <= T.length; i++) {
                 if (T[i] == 0) {
+                    System.out.println("getFitnes:" + currentFit.getFitness(currentBoolSta) );
                     return getState(currentBoolSta);
                 }
                 boolean[] nextBoolSta = new boolean[discipl.length];
                 nextBoolSta = createRandomState(nextBoolSta);
+                
+               
+                
                 FitnessFunction nextFit = new FitnessFunction(discipl);
                 
                 
-                long deltaE = nextFit.getFitness(currentBoolSta) - currentFit.getFitness(nextBoolSta);
+                long deltaE = nextFit.getFitness(nextBoolSta) - currentFit.getFitness(currentBoolSta);
 
                 if (deltaE > 0) {
                     currentBoolSta = nextBoolSta; 
-                    System.out.println("deltaE é´positivo");
+                   // System.out.println("deltaE é´positivo");
                     
                 } else {
                    
                     if( r.nextDouble()< Math.exp(deltaE/T[i])){
-                        currentBoolSta = nextBoolSta; System.out.println("Pega o pior");
+                        currentBoolSta = nextBoolSta; //System.out.println("Pega o pior");
                     }else{
                         currentBoolSta = nextBoolSta;
-                        System.out.println("Pega o melhor");
+                       // System.out.println("Pega o melhor");
                     }
                     
                      p.add( (float)Math.exp(deltaE/T[i]));
@@ -73,8 +77,12 @@ public class SimulatedAnneallingAlg {
    public boolean[] createRandomState(boolean stateBool[]){
        Random RNG =  new Random();
        PrimitiveIterator.OfInt intStream = RNG.ints(0,discipl.length).iterator();
-        int i = intStream.next ();
+       for(int j=0 ; j<discipl.length ; j++){
+       int i = intStream.next ();
         stateBool [i]= !stateBool [i];
+       }
+       /*  for(boolean w: stateBool)
+                System.out.println(w);*/
        return stateBool;
    }
   

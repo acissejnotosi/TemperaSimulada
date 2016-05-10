@@ -46,15 +46,15 @@ public class SimulatedAnnealing {
         for(Discipline d: disciplines)
             System.out.println(d);
         
-        int j=50;
+        int j=50000;
         List<Float> p;
         double[] T = new double[j+1];
-        for(int i= 0; i<=50; i++)
+        for(int i= 0; i<=50000; i++)
         {
             T[i] = j;
             j--;
         }
-        
+      
         
         SimulatedAnneallingAlg sAA = new SimulatedAnneallingAlg(disciplines, T);
         Discipline[] bestState = new Discipline[sAA.theBestArrangement().length];
@@ -62,8 +62,19 @@ public class SimulatedAnnealing {
         
             p= sAA.getP();
         
-        for(double d: p)
-            System.out.println(d);
+     //   for(double d: p)
+         //   System.out.println(d);
     
+        for(Discipline w: bestState)
+            System.out.println(w);
+        
+        int fitnessSum=0;
+         for(int i = 0; i < bestState.length; i++){
+                fitnessSum += bestState[i].getCredits();       
+        }
+         
+         System.out.println(fitnessSum);
+         System.out.println();
+         
     }
 }
