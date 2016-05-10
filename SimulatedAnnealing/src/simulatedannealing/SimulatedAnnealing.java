@@ -3,12 +3,14 @@ package simulatedannealing;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 
 public class SimulatedAnnealing {
 
-    public static void main(String[] args) throws FileNotFoundException, IOException {
+    public static void main(String[] args) throws FileNotFoundException, IOException, Exception {
         File file;
         JFileChooser fileDialog = new JFileChooser();
         FileFilter textFilter = new FileFilter(){
@@ -39,12 +41,29 @@ public class SimulatedAnnealing {
     
         ReadDisciplines rDisc = new ReadDisciplines(file);
         
-        Discipline disciplines[] = rDisc.getDisciplines();
+        Discipline disciplines[] = rDisc.getDisciplines(); //
         
         for(Discipline d: disciplines)
             System.out.println(d);
         
+        int j=50;
+        List<Float> p;
+        double[] T = new double[j+1];
+        for(int i= 0; i<=50; i++)
+        {
+            T[i] = j;
+            j--;
+        }
         
-    }
+        
+        SimulatedAnneallingAlg sAA = new SimulatedAnneallingAlg(disciplines, T);
+        Discipline[] bestState = new Discipline[sAA.theBestArrangement().length];
+        bestState = sAA.theBestArrangement();
+        
+            p= sAA.getP();
+        
+        for(double d: p)
+            System.out.println(d);
     
+    }
 }

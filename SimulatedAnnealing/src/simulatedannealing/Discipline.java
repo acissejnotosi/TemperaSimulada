@@ -18,6 +18,10 @@ public class Discipline {
         this.intervals = intervals;
     }
 
+    public int getDisciplineNum() {
+        return disciplineNum;
+    }
+
 
 
     public String getName() {
@@ -47,7 +51,7 @@ public class Discipline {
     public boolean isObrigatory(){
         String regex= "(?i)(";
         for(EObrigatoryTokens t: EObrigatoryTokens.values())
-            regex += t.getDisciplineName() + "| ";
+            regex += t.getDisciplineName() + " ";
         regex = regex.trim().substring(0,regex.length()-1) + ")";
         return disciplineName.matches(regex);
     }
@@ -73,4 +77,28 @@ public class Discipline {
         str += "}};";
         return str;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setDisciplineName(String disciplineName) {
+        this.disciplineName = disciplineName;
+    }
+
+    public void setDisciplineNum(int disciplineNum) {
+        this.disciplineNum = disciplineNum;
+    }
+
+    public void setCredits(int credits) {
+        this.credits = credits;
+    }
+
+    public void setIntervals(List<Integer> intervals) {
+        this.intervals = intervals;
+    }
+    
+    
+    
+    
 }

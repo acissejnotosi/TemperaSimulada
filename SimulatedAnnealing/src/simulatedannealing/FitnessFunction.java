@@ -102,7 +102,7 @@ public class FitnessFunction {
     }
     
     private int countMoreThanFiveIntervalsSequence(List<Integer> intervals){
-        int ini = 0,prox = 0, overflow = 0;
+        int ini = 0,prox = 1, overflow = 0;
         
         //Verifica sequência de horarios para identificar se existem mais de 5 disciplinas em sequencia
         for(;prox < intervals.size(); prox++){
