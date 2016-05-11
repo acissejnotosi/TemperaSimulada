@@ -21,8 +21,8 @@ public class SimulatedAnneallingAlg {
     private double T[]; // função temperatura
     private List<Float> p  = new  ArrayList<Float>(); // probalidade de fazer uma escolha ruim
     
-    private final int MAX_IT = 1000;
-    private final float CNST_T = 1.12F; 
+    private final int MAX_IT = 100000;
+    private final float CNST_T = 0.0001F; 
 
     public SimulatedAnneallingAlg(Discipline[] discipl) {
         this.discipl = discipl;
@@ -35,7 +35,7 @@ public class SimulatedAnneallingAlg {
         boolean[] currentBoolSta = new boolean[discipl.length]; // vetor de booleanos para o estado atual
         currentBoolSta = createRandomState(currentBoolSta); // random para o vetor de booleanos
         FitnessFunction ff = new FitnessFunction(discipl); //FitnessFunctionpara o estado atual
-        double[] T = new double[MAX_IT] ;
+       // double[] T = new double[MAX_IT] ;
                    
             Random r = new Random();
             for (int i = 1; i <= MAX_IT; i++) {
@@ -43,9 +43,19 @@ public class SimulatedAnneallingAlg {
                 
                 boolean[] nextBoolSta = new boolean[discipl.length];
                 nextBoolSta = createRandomState(nextBoolSta);               
+                long deltaE =0;
                 
-                long deltaE = ff.getFitness(nextBoolSta)- ff.getFitness(currentBoolSta);
-
+                // DeltaE calculado com valores normalizados.
+                if(ff.getFitness(nextBoolSta)> ff.getFitness(currentBoolSta)){
+                    deltaE = (ff.getFitness(nextBoolSta)+ff.getFitness(nextBoolSta))-
+                            (ff.getFitness(currentBoolSta)+ff.getFitness(nextBoolSta));
+                    System.out.println("*"+(ff.getFitness(nextBoolSta)+ff.getFitness(nextBoolSta)));
+                }else{
+                     deltaE = (ff.getFitness(currentBoolSta)+ff.getFitness(nextBoolSta))-
+                            (ff.getFitness(currentBoolSta)+ff.getFitness(currentBoolSta));
+                    System.out.println("*"+(ff.getFitness(currentBoolSta)+ff.getFitness(nextBoolSta)));
+                
+                }
                 if (deltaE > 0) {
                     currentBoolSta = nextBoolSta; 
                    // System.out.println("deltaE é´positivo");
@@ -53,8 +63,8 @@ public class SimulatedAnneallingAlg {
                 } else {
                    
                     if( r.nextDouble()> Math.exp(deltaE/testeT(i)) ){
-                       // currentBoolSta = nextBoolSta; 
-                       System.out.println("Pega o pior" + Math.exp(deltaE/testeT(i)));
+                       //currentBoolSta = nextBoolSta; 
+                      //System.out.println("Pega o pior" + Math.exp(deltaE/testeT(i)));
                        
                     }else{
                         currentBoolSta = nextBoolSta;
@@ -65,23 +75,23 @@ public class SimulatedAnneallingAlg {
                     
                 }              
             }
-        System.out.println("getFitness*:" + ff.getFitness(currentBoolSta) );
+        System.out.println(ff.getFitness(currentBoolSta) );
         return getState(currentBoolSta);
     }
     
     public int testeT(int t){
-        int x = (int) ((int) MAX_IT-CNST_T*t);
+        int x = (int) (int)(CNST_T / MAX_IT);
         return x > 0?x:1;
     }
 
    public boolean[] createRandomState(boolean stateBool[]){
        Random RNG =  new Random();
        PrimitiveIterator.OfInt intStream = RNG.ints(0,discipl.length).iterator();
-       for(int j=0 ; j<discipl.length ; j++){
+       for(int j=0 ; j<10/*RNG.nextInt(discipl.length*/ ; j++){
        int i = intStream.next ();
         stateBool [i]= !stateBool [i];
        }
-       /*  for(boolean w: stateBool)
+        /* for(boolean w: stateBool)
                 System.out.println(w);*/
        return stateBool;
    }
